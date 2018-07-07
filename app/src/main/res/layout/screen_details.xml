@@ -1,0 +1,13 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:paddingBottom="10dp" android:paddingEnd="16dp" android:paddingStart="16dp" android:paddingTop="10dp">
+    <TextView android:id="@+id/tv_repo_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="18sp" android:textStyle="bold" tools:text="Repo Name"/>
+    <TextView android:id="@+id/tv_repo_description" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" tools:text="Repo Description"/>
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginBottom="4dp" android:layout_marginTop="4dp" android:background="@color/colorPrimary"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Forks" android:textStyle="bold"/>
+        <TextView android:id="@+id/tv_forks" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="13"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Stars" android:textStyle="bold"/>
+        <TextView android:id="@+id/tv_stars" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="10"/>
+    </LinearLayout>
+</LinearLayout>
