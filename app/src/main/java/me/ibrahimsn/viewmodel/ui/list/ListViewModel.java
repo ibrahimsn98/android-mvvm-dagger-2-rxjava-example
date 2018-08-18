@@ -13,11 +13,11 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import me.ibrahimsn.viewmodel.data.model.Repo;
-import me.ibrahimsn.viewmodel.data.rest.RepoService;
+import me.ibrahimsn.viewmodel.data.rest.RepoRepository;
 
 public class ListViewModel extends ViewModel {
 
-    private final RepoService repoService;
+    private final RepoRepository repoRepository;
     private CompositeDisposable disposable;
 
     private final MutableLiveData<List<Repo>> repos = new MutableLiveData<>();
@@ -25,8 +25,8 @@ public class ListViewModel extends ViewModel {
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>();
 
     @Inject
-    public ListViewModel(RepoService repoService) {
-        this.repoService = repoService;
+    public ListViewModel(RepoRepository repoRepository) {
+        this.repoRepository = repoRepository;
         disposable = new CompositeDisposable();
         fetchRepos();
     }
@@ -43,7 +43,7 @@ public class ListViewModel extends ViewModel {
 
     private void fetchRepos() {
         loading.setValue(true);
-        disposable.add(repoService.getRepositories().subscribeOn(Schedulers.io())
+        disposable.add(repoRepository.getRepositories().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<Repo>>() {
                     @Override
                     public void onSuccess(List<Repo> value) {

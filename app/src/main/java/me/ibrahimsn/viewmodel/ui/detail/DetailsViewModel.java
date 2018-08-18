@@ -12,11 +12,11 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import me.ibrahimsn.viewmodel.data.model.Repo;
-import me.ibrahimsn.viewmodel.data.rest.RepoService;
+import me.ibrahimsn.viewmodel.data.rest.RepoRepository;
 
 public class DetailsViewModel extends ViewModel {
 
-    private final RepoService repoService;
+    private final RepoRepository repoRepository;
     private CompositeDisposable disposable;
 
     private final MutableLiveData<Repo> selectedRepo = new MutableLiveData<>();
@@ -26,8 +26,8 @@ public class DetailsViewModel extends ViewModel {
     }
 
     @Inject
-    public DetailsViewModel(RepoService repoService) {
-        this.repoService = repoService;
+    public DetailsViewModel(RepoRepository repoRepository) {
+        this.repoRepository = repoRepository;
         disposable = new CompositeDisposable();
     }
 
@@ -53,7 +53,7 @@ public class DetailsViewModel extends ViewModel {
     }
 
     private void loadRepo(String[] repo_details) {
-        disposable.add(repoService.getRepo(repo_details[0], repo_details[1]).subscribeOn(Schedulers.io())
+        disposable.add(repoRepository.getRepo(repo_details[0], repo_details[1]).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<Repo>() {
             @Override
             public void onSuccess(Repo value) {

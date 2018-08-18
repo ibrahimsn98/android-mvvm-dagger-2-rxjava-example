@@ -31,7 +31,7 @@ public class DetailsFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        detailsViewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(DetailsViewModel.class);
+        detailsViewModel = ViewModelProviders.of(getBaseActivity(), viewModelFactory).get(DetailsViewModel.class);
         detailsViewModel.restoreFromBundle(savedInstanceState);
         displayRepo();
     }
@@ -44,10 +44,12 @@ public class DetailsFragment extends BaseFragment {
 
     private void displayRepo() {
         detailsViewModel.getSelectedRepo().observe(this, repo -> {
-            repoNameTextView.setText(repo.name);
-            repoDescriptionTextView.setText(repo.description);
-            forksTextView.setText(String.valueOf(repo.forks));
-            starsTextView.setText(String.valueOf(repo.stars));
+            if (repo != null) {
+                repoNameTextView.setText(repo.name);
+                repoDescriptionTextView.setText(repo.description);
+                forksTextView.setText(String.valueOf(repo.forks));
+                starsTextView.setText(String.valueOf(repo.stars));
+            }
         });
     }
 }

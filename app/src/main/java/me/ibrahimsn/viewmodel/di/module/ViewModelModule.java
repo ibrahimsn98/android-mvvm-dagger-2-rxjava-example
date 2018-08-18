@@ -3,6 +3,8 @@ package me.ibrahimsn.viewmodel.di.module;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
+import javax.inject.Singleton;
+
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
@@ -11,6 +13,7 @@ import me.ibrahimsn.viewmodel.ui.detail.DetailsViewModel;
 import me.ibrahimsn.viewmodel.di.util.ViewModelKey;
 import me.ibrahimsn.viewmodel.util.ViewModelFactory;
 
+@Singleton
 @Module
 public abstract class ViewModelModule {
 
